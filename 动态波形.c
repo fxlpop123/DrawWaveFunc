@@ -28,3 +28,22 @@ void OLED_Draw_Wave(void)
 
 	Delay_Ms(30);
 }
+
+void OLED_Draw_Progress(void)
+{
+	for(uint8_t i=0;i<=99;i=i+1)
+	{
+		u8g2_ClearBuffer(&u8g2); 
+					
+		char buff[20];
+		u8g2_SetFont(&u8g2, u8g2_font_6x10_tf);//字体
+		sprintf(buff, "%d%%", (int)(i/100.0*100));
+		u8g2_DrawStr(&u8g2, 105, 49, buff);//当前进度显示
+					
+		u8g2_DrawBox(&u8g2, 2, 40, i, 10);//填充框实心矩形框
+		u8g2_DrawFrame(&u8g2, 0, 38, 103, 14);//空心矩形框
+					
+		bsp_DelayMS(50);
+		u8g2_SendBuffer(&u8g2);
+	}
+}
