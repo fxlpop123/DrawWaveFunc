@@ -1,4 +1,6 @@
 
+//在使用该函数前，需要将ucWaveBuff内全部元素赋值为ucRangeDown,然后将函数OLED_Draw_Wave放在while里周期调用
+
 uint8_t ucWaveBuff[128] = {0};
 uint8_t ucKeyCode = 0;
 
@@ -23,4 +25,6 @@ void OLED_Draw_Wave(void)
 		OLED_Draw_Line(i, 63 - ucWaveBuff[i], i, 63 - ucWaveBuff[i + 1], 1);
 	
 	OLED_Refresh();
+
+	Delay_Ms(30);
 }
